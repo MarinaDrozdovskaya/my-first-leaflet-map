@@ -16,8 +16,6 @@ Esri_WorldImagery.addTo(map);
 
 // add Sand sample data with markers and popups
 
-
-
 let sandIcon = L.icon({
     iconUrl: 'sample.png',
     iconSize:     [30, 30],
@@ -30,7 +28,7 @@ let sandSamplesLayer = L.geoJson(sandSamples, {
       return L.marker(latlng,{icon: sandIcon});
     }
   })
-  
+
 sandSamplesLayer.bindPopup(function (layer) {
     return 'Sample date: '+layer.feature.properties.date;
 }).addTo(map);
