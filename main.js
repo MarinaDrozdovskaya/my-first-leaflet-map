@@ -1,8 +1,16 @@
-//Create map and add basemap
+//Create map and add basemaps
 
 let map = L.map('map').setView([-4.5, 55.7], 9.5);
-L.tileLayer('https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=bdDC3WpumeZcwZwYZw6b', {
-    attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'}).addTo(map);
+
+let Esri_WorldStreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+});
+
+
+let Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+});
+Esri_WorldImagery.addTo(map);
 
 
 
@@ -229,12 +237,17 @@ diveSitesLayer.bindPopup(function (layer) {
 
 // add legend and scale
 
+let baseMaps = {
+    "Satellite": Esri_WorldImagery,
+	"Streets": Esri_WorldStreetMap,
+};
+
 let dataLayers = {
     "Dives": diveSitesLayer,
 	"Sand Samples": sandSamplesLayer,
 };
 
-L.control.layers(null, dataLayers, {
+L.control.layers(baseMaps, dataLayers, {
 	collapsed: false,
 }).addTo(map);
 
