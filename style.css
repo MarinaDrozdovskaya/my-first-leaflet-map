@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+* span {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #0ea49b;
+}
+
 #map {
     width: 100vw;
     height: 100vh;
@@ -18,4 +24,12 @@
     font-family: sans-serif;
     z-index: 2;
     color: white;
+}
+
+.leaflet-control-layers {
+    background-color: rgba(251,108,91,0.6) !important;
+}
+
+.leaflet-popup-tip-container {
+    display: none !important;
 }
